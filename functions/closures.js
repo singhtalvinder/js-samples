@@ -1,4 +1,8 @@
 //Closure and currying
+
+// Closure is a combination of a function and lexical scope in which it was defined.
+
+
 /*const counter = createCounter()
 counter.increment()
 counter.decrement()

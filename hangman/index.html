@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>A Simple Puzzle game</title>
+        <link href="/styles/styles.css" rel="stylesheet">
+        <link href="/images/1.png" rel="icon">
+    </head>
     <body>
-        <p>This is a word guess game!!. Start guessing the letters of the word</p>
-        <p>below. There are only few tries, so be careful!!</p>
-        <p>Guess this word:</p>
-        <p id="puzzle"></p>
-        <p id="guesses"></p>
-        <button id='reset'>Reset Puzzle</button>
-        <script src="request.js"></script>
-        <script src="hangman.js"></script>
-        <script src="app.js"></script>        
+        <div>
+            <p>This is a word guess game!!. Start guessing the letters of the word below.</p>
+            <p>There are only few tries, so be careful!!</p>
+            <p>Guess this word:</p>
+            
+            <div id="puzzle" class="puzzle"></div>
+            <p id="guesses"></p>
+            <button id='reset' class="button">Reset Puzzle</button>
+        </div>
+        <script src="/scripts/request.js"></script>
+        <script src="/scripts/hangman.js"></script>
+        <script src="/scripts/app.js"></script>        
     </body>
 </html>

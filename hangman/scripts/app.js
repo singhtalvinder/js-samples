@@ -26,8 +26,18 @@ const startGame = async () =>{
 }
 
 const render = () => {
-    puzzleEl.textContent = game1.puzzle
+    puzzleEl.innerHTML = ''//game1.puzzle
     guessesEl.textContent = game1.statusMessage
+    
+    // for each char in the string , add a span to #puzzle
+    // The span test should just be letter itself.
+    game1.puzzle.split('').forEach((letter)=> {
+        const letterEl = document.createElement('span')
+        letterEl.textContent = letter
+        puzzleEl.appendChild(letterEl)
+    })
+
+
 
 }
 document.querySelector('#reset').addEventListener('click', startGame)
