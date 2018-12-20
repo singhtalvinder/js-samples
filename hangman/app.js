@@ -1,20 +1,38 @@
 
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
-// start the game
-const game1 = new Hangman('Music play', 5)
-
+// start the game- static way.
+//const game1 = new Hangman('Music play', 5)
+let game1
+/*
 // Guess letters eg: c,t,z...
 puzzleEl.textContent = game1.puzzle
 guessesEl.textContent = game1.statusMessage
-
+*/
 window.addEventListener('keypress', function(e) {
     const guess = String.fromCharCode(e.charCode)
     game1.makeGuess(guess)
+    render()
+})
+
+const startGame = async () =>{
+   const NoOfWordsInPuzzle = '3'
+   const puzzle = await getPuzzle(NoOfWordsInPuzzle) 
+   const NoOfRetries = 5
+   // start game with 3 letter word fetched above, with 5 retries.
+   game1 = new Hangman(puzzle, NoOfRetries)
+   render()
+
+}
+
+const render = () => {
     puzzleEl.textContent = game1.puzzle
     guessesEl.textContent = game1.statusMessage
-   
-})
+
+}
+document.querySelector('#reset').addEventListener('click', startGame)
+
+startGame()
 
 // Call get puzzle to get the puzzle word. 
 // The first param specifies the word count for the puzzle.
@@ -23,14 +41,13 @@ window.addEventListener('keypress', function(e) {
 // This is using promises.
 // So the first line getPuzzle('3').then((data) translates to :
 // fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((data)=> {
+ /*
  getPuzzle('3').then((puzzle)=> {
      console.log(puzzle) 
  }).catch((err)=> {
      console.log(`Error : ${err}`) 
  })
-
-
-
+*/
 /*
 // using fetch
 getCountry('IN').then((country) =>{
@@ -39,12 +56,11 @@ getCountry('IN').then((country) =>{
     console.log(`Failed to fetch data: Error: ${err}`)
 })
 */
-
+/*
 // 1. create getLocation fn which takes no args
 // 2. setup getLocation to make a request to the url and parse the data
 // 3. use getLocation to print the city, region and country info.
 // use the following :https://ipinfo.io/json?token=d833ddc26ef7d8 ( your actual token)
-//https://ipinfo.io/json?token=8933ddc26ef7d8
 getLocation().then((location) =>{
     //console.log(`Your location : ${location.city}, ${location.country}, ${location.region}`)
     return getCountry(location.country)
@@ -53,6 +69,15 @@ getLocation().then((location) =>{
 }).catch((err) =>{
     console.log(`Error: ${err}`)
 })
+*/
+/*
+// An alternative for above call.
+getCurrentCountry().then((country) =>{
+    console.log(`Country name is : ${country.name}`)
+}).catch((err) =>{
+    console.log(`Error: ${err}`)
+})
+*/
 
 
 

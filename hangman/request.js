@@ -30,8 +30,38 @@ const getPuzzleOld = (wordCount) =>{
     })
 }
 */
+//getCurrentCountry- returns a promise that resolved the country object for 
+// current location, using async-await ...
+const getCurrentCountry = async () =>{
+    const location = await getLocation()
+    return getCountry(location.country)
+}
 
 /////////////////////////////////////////
+const getCountry = async (countryCode) => {
+    // Make a request to get all countries.
+    // Parse resp, find your country by its alpha2code
+    const response = await fetch('http://restcountries.eu/rest/v2/all')
+    if(response.status === 200) {
+        const data = await response.json()
+        return data.find((country) => country.alpha2Code === countryCode)
+    } else {
+            throw new Error('Unable to fetch country data')
+    }
+}
+
+// get location based on the ip address.
+const getLocation = async () =>{
+    const response = await fetch('https://ipinfo.io/json?token=8933ddc26ef7d8')
+    if(response.status === 200) {
+        return response.json()
+    } else {
+        throw new Error('Unable to fetch location!!')
+    }
+}
+
+/*
+// Without async-await
 const getCountry = (countryCode) => {
     // Make a request to get all countries.
     // Parse resp, find your country by its alpha2code
@@ -58,7 +88,7 @@ const getLocation = () =>{
         }
     })
 }
-
+*/ 
 /* This uses http request .
 const getPuzzle = (wordCount) => new Promise((resolve,reject) =>{
     // Make an HTTP request
