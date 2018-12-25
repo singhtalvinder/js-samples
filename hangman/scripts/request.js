@@ -1,8 +1,13 @@
+// NOTE:  There is one problem with apps that ue http in a https site and vice versa,
+//        so deployment becomes a problem and apps won't work.
+//        The solution is to omit the (protocol) http: or https: from the start and just
+//        start from the //<site-name> so that it matches the protocol of the hosting
+//        website.
+
 // /using fetch api for making a http request.
 const getPuzzle = async (wordCount) =>{
     // Make an HTTP request using fetch api.
     // we do return here for fetch because our calling method needs a promise to work on.
-
     const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
     if(response.status === 200) {
         const data = await response.json()
@@ -41,7 +46,8 @@ const getCurrentCountry = async () =>{
 const getCountry = async (countryCode) => {
     // Make a request to get all countries.
     // Parse resp, find your country by its alpha2code
-    const response = await fetch('http://restcountries.eu/rest/v2/all')
+    // See NOTE pm top.
+    const response = await fetch('//restcountries.eu/rest/v2/all')
     if(response.status === 200) {
         const data = await response.json()
         return data.find((country) => country.alpha2Code === countryCode)
@@ -52,7 +58,8 @@ const getCountry = async (countryCode) => {
 
 // get location based on the ip address.
 const getLocation = async () =>{
-    const response = await fetch('https://ipinfo.io/json?token=8933ddc26ef7d8')
+    // See NOTE pm top.
+    const response = await fetch('//ipinfo.io/json?token=8933ddc26ef7d8')
     if(response.status === 200) {
         return response.json()
     } else {
