@@ -20,7 +20,7 @@ const name = 'Singh'
 const scream = (text) =>`${text.toUpperCase()}`
 
 const square = (x) => x * x
-
+console.log('Another log from utilities.js')
 export {
     add, 
     name, 
